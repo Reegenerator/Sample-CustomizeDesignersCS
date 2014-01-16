@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="DesignDB" Class="CustomersLINQDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\DesignDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="Business.Properties.Settings" SettingsPropertyName="ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+</Database>

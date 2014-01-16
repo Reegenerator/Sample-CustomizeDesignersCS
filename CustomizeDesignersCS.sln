@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizeDesigners", "CustomizeDesigners\CustomizeDesigners.csproj", "{E1D762F0-C1BE-4EA5-94A5-05A45FCD75C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{AB683987-B545-47D7-B0C5-7D800CCBBF14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Reegenerator|Any CPU = Reegenerator|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1D762F0-C1BE-4EA5-94A5-05A45FCD75C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1D762F0-C1BE-4EA5-94A5-05A45FCD75C8}.Reegenerator|Any CPU.ActiveCfg = Reegenerator|Any CPU
+		{E1D762F0-C1BE-4EA5-94A5-05A45FCD75C8}.Reegenerator|Any CPU.Build.0 = Reegenerator|Any CPU
+		{E1D762F0-C1BE-4EA5-94A5-05A45FCD75C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB683987-B545-47D7-B0C5-7D800CCBBF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB683987-B545-47D7-B0C5-7D800CCBBF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB683987-B545-47D7-B0C5-7D800CCBBF14}.Reegenerator|Any CPU.ActiveCfg = Reegenerator|Any CPU
+		{AB683987-B545-47D7-B0C5-7D800CCBBF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB683987-B545-47D7-B0C5-7D800CCBBF14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
