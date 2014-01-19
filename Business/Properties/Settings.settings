@@ -51,5 +51,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\DesignDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True</Value>
     </Setting>
+    <Setting Name="Test" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

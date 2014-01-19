@@ -12,7 +12,7 @@ namespace CustomizeDesigners.Dataset
         /// <summary>
         /// The dataset object as loaded from the dataset file that triggered the code rendering process.
         /// </summary>
-        private System.Data.DataSet dataSet;
+        private System.Data.DataSet _dataSet;
 
         /// <summary>
         /// Method that gets called prior to calling <see cref="Render"/>.
@@ -22,8 +22,8 @@ namespace CustomizeDesigners.Dataset
         public override void PreRender()
         {
             base.PreRender();
-            this.dataSet = new System.Data.DataSet();
-            this.dataSet.ReadXmlSchema(base.ProjectItem.FullPath);
+            this._dataSet = new System.Data.DataSet();
+            this._dataSet.ReadXmlSchema(base.ProjectItem.FullPath);
         }
 
         /// <summary>

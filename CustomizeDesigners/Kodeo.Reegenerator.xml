@@ -44,7 +44,7 @@
             <para>
             When you are authoring a renderer you normally inherit from the <see cref="T:Kodeo.Reegenerator.Generators.CodeRenderer"/> class
             which gives you access to the <see cref="P:Kodeo.Reegenerator.Generators.CodeRenderer.ProjectItem"/> property.
-            Through this property you can get hold of the DTE object and then of the <b>EnvDTE.Solution</b>. 
+            Through this property you can get hold of the DTE object and then of the <b>EnvDTE.Solution</b>.
             </para>
             </remarks>
         </member>
@@ -67,7 +67,7 @@
         </member>
         <member name="M:Kodeo.Reegenerator.Wrappers.Project.FromUniqueName(EnvDTE.Solution,System.String)">
             <summary>
-            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class 
+            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class
             identified by its unique name within a specified <b>EnvDTE.Solution</b>.
             </summary>
             <exception cref="T:System.ArgumentNullException"><paramref name="solution"/> is <c>null</c>.</exception>
@@ -79,7 +79,7 @@
         </member>
         <member name="M:Kodeo.Reegenerator.Wrappers.Project.FromUniqueName(EnvDTE.Solution,System.String,System.Boolean)">
             <summary>
-            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class 
+            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class
             identified by its unique name within a specified <b>EnvDTE.Solution</b>.
             </summary>
             <exception cref="T:System.ArgumentNullException"><paramref name="solution"/> is <c>null</c>.</exception>
@@ -92,7 +92,7 @@
         </member>
         <member name="M:Kodeo.Reegenerator.Wrappers.Project.FromPath(EnvDTE.Solution,System.String)">
             <summary>
-            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class 
+            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class
             located at a specified path and belonging to a specified <b>EnvDTE.Solution</b>.
             </summary>
             <exception cref="T:System.ArgumentNullException"><paramref name="solution"/> is <c>null</c>.</exception>
@@ -104,7 +104,7 @@
         </member>
         <member name="M:Kodeo.Reegenerator.Wrappers.Project.FromPath(EnvDTE.Solution,System.String,System.Boolean)">
             <summary>
-            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class 
+            Creates a new instance of the <see cref="T:Kodeo.Reegenerator.Wrappers.Project"/> class
             located at a specified path and belonging to a specified <b>EnvDTE.Solution</b>.
             </summary>
             <exception cref="T:System.ArgumentNullException"><paramref name="solution"/> is <c>null</c>.</exception>
@@ -146,7 +146,7 @@
                     <term>$(SolutionDir)</term>
                     <description>The directory of the solution <see cref="P:Kodeo.Reegenerator.Wrappers.Project.DteObject"/> belongs to.</description>
                 </item>
-                <item> 
+                <item>
                     <term>$(ReegeneratorDir)</term>
                     <description>The directory where Reegenerator has been installed. The value is <see cref="P:Kodeo.Reegenerator.Constants.ReegeneratorDir"/>.</description>
                 </item>
@@ -164,7 +164,7 @@
         </member>
         <member name="M:Kodeo.Reegenerator.Wrappers.Project.CompressPath(System.String,System.String)">
             <summary>
-            Transforms an absolute path into a path relative to a directory, also replacing portions 
+            Transforms an absolute path into a path relative to a directory, also replacing portions
             of the path with path directives.
             </summary>
             <remarks>
@@ -203,7 +203,7 @@
             Invokes the custom tool for all the project items associated with a custom tool that belong to a <b>EnvDTE.Project</b>.
             </summary>
             <remarks>
-            <see cref="F:Kodeo.Reegenerator.Constants.RgenTemplate"/> custom tools are invoked first and 
+            <see cref="F:Kodeo.Reegenerator.Constants.RgenTemplate"/> custom tools are invoked first and
             then all other custom tools.
             </remarks>
             <param name="runSynchronously">Determines whether to execute run the custom tools synchronously.</param>
@@ -229,12 +229,21 @@
             <exception cref="T:Kodeo.Reegenerator.Wrappers.Project.BuildException">The project associated with this instance build has failed.</exception>
             <returns>The output path of the project.</returns>
         </member>
+        <member name="M:Kodeo.Reegenerator.Wrappers.Project.ConfigureAsRendererLibrary">
+            <summary>
+            Makes the changes (if necessary) to this project in order become a renderer library.
+            </summary>
+            <remarks>
+            <see cref="P:Kodeo.Reegenerator.Wrappers.Project.IsReegeneratorProject"/> will become true, the current Kodeo.Reegenerator.dll library and the documentation xml
+            are added or updated to the project and the reference to it is set.
+            </remarks>
+        </member>
         <member name="M:Kodeo.Reegenerator.Wrappers.Project.GetCodeElements``1">
             <summary>
             Gets the code elements of a specific type defined in this project.
             </summary>
             <typeparam name="T">The type of the code elements to be retrieved (e.g. EnvDTE.CodeInterface).</typeparam>
-            <returns>A dictionary keys by the element's full name with value that is a list 
+            <returns>A dictionary keys by the element's full name with value that is a list
             with all the partial definitions of type <typeparamref name="T"/> for the key.</returns>
         </member>
         <member name="M:Kodeo.Reegenerator.Wrappers.Project.TraverseCodeElements``1(System.Action{``0},System.Func{``0,System.Boolean})">
@@ -706,7 +715,7 @@
         </member>
         <member name="P:Kodeo.Reegenerator.Wrappers.Project.DefaultLanguage">
             <summary>
-            Gets the default language of the project to generate code as. 
+            Gets the default language of the project to generate code as.
             VB when it is a Visual Basic project, C# otherwise.
             </summary>
         </member>
@@ -723,6 +732,14 @@
             <summary>
             Tells whether this project is a renderers library project.
             </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Wrappers.Project.ReegeneratorReferenceVersion">
+            <summary>
+            Gets the version of Kodeo.Reegenerator.dll reference.
+            </summary>
+            <remarks>
+            Returns <c>null</c> if not referenced or if the project is not a Reegenerator renderers library project.
+            </remarks>
         </member>
         <member name="P:Kodeo.Reegenerator.Wrappers.Project.DteObject">
             <summary>
@@ -2871,9 +2888,39 @@
               Looks up a localized string similar to Unknown include type {0}.
             </summary>
         </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Folder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Info48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.LeftDown16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.LeftUp16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Minus16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
         <member name="P:Kodeo.Reegenerator.Properties.Resources.MsgBoxCopySchema">
             <summary>
               Looks up a localized string similar to To enable design time xml schema, open file properties by pressing F4 and then paste in the Schemas property.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.NewBook48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
         <member name="P:Kodeo.Reegenerator.Properties.Resources.PaneCodeGenerationOuput">
@@ -2884,6 +2931,26 @@
         <member name="P:Kodeo.Reegenerator.Properties.Resources.PaneGeneratedCode">
             <summary>
               Looks up a localized string similar to Reegenerator Code.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Plus16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Reegenerator128">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Renderer16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Renderer48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
         <member name="P:Kodeo.Reegenerator.Properties.Resources.RgenDependencies">
@@ -2899,6 +2966,11 @@
             
               &lt;Dependen [rest of string was truncated]&quot;;.
              </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Save48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
         </member>
         <member name="P:Kodeo.Reegenerator.Properties.Resources.SyntaxErrorAttributeNameExpected">
             <summary>
@@ -3070,6 +3142,11 @@
               Looks up a localized string similar to &apos;Language&apos; attribute not found for template definition.
             </summary>
         </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.Tick128">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
         <member name="P:Kodeo.Reegenerator.Properties.Resources.TraceCodeAssembled">
             <summary>
               Looks up a localized string similar to Code template successfully assembled..
@@ -3138,6 +3215,11 @@
         <member name="P:Kodeo.Reegenerator.Properties.Resources.TraceTrialRunsRemaining">
             <summary>
               Looks up a localized string similar to Rendered by Reegenerator for NON-COMMERCIAL USE..
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.Properties.Resources.VSProject_genericproject">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
             </summary>
         </member>
         <member name="T:Kodeo.Reegenerator.Language.Body">
@@ -3781,7 +3863,7 @@
         </member>
         <member name="F:Kodeo.Reegenerator.Constants.Version">
             <summary>
-            Defines the current version. 
+            Defines the current version number.
             </summary>
             <value>The current version number.</value>
         </member>
@@ -3831,6 +3913,12 @@
             The project type is stored in the current project as a global variable named <c>RgenProjectType</c>.
             </remarks>
             <value>The value is <c>RgenProjectType</c>.</value>
+        </member>
+        <member name="F:Kodeo.Reegenerator.Constants.RenderersLibrary">
+            <summary>
+            The value of <see cref="F:Kodeo.Reegenerator.Constants.RgenProjectType"/> representing the Renderers library project.
+            </summary>
+            <value>The value is <c>RenderersLibrary</c>.</value>
         </member>
         <member name="F:Kodeo.Reegenerator.Constants.XmlNamespaceRoot">
             <summary>
@@ -3891,6 +3979,12 @@
             The name of the file that contains the dependencies.
             </summary>
         </member>
+        <member name="F:Kodeo.Reegenerator.Constants.CurrentVersion">
+            <summary>
+            The <see cref="T:System.Version"/> of <see cref="F:Kodeo.Reegenerator.Constants.Version"/>.
+            </summary>
+            <value>The current version.</value>
+        </member>
         <member name="F:Kodeo.Reegenerator.Constants.RegistryReegeneratorPath">
             <summary>
             Defines the path of the registry key holding the Reegenerator product information.
@@ -3910,7 +4004,7 @@
             The source attribute that identifies the Reegenerator <c>xs:appinfo</c> element in XML schema files.
             </summary>
             <remarks>
-            The Reegenerator directives stored in XML schema files are located under the <c>xs:appinfo</c> structure. 
+            The Reegenerator directives stored in XML schema files are located under the <c>xs:appinfo</c> structure.
             This structure can be used by other tools (e.g. dataset designer). The Reegenerator directives are therefore stored
             under a <c>xs:appinfo</c> element that has a <c>source</c> attribute whose value is <c>urn:Kodeo.Reegenerator</c>.
             </remarks>
@@ -3955,7 +4049,7 @@
             Projects will reference this path, ensuring that Intellisense is provided since the documentation
             XML files are stored in the same location.
             <para>
-            Visual Studio uses the GAC installed version of this assembly. 
+            Visual Studio uses the GAC installed version of this assembly.
             </para>
             </remarks>
         </member>
@@ -3975,7 +4069,7 @@
             <summary>
             Gets the path of the Microsoft .NET framework.
             </summary>
-            <value>The value is <c>%windir%\Microsoft.NET\Framework\version</c>. The <c>%windir%</c> environment 
+            <value>The value is <c>%windir%\Microsoft.NET\Framework\version</c>. The <c>%windir%</c> environment
             variable is expanded to the location of the Windows installation.</value>
         </member>
         <member name="T:Kodeo.Reegenerator.Constants.VsProjectTypes">
@@ -8037,7 +8131,12 @@
         </member>
         <member name="P:Kodeo.Reegenerator.DynamicCode.RendererTypesLoader.RenderTypeInfo.Property.MustBeSpecified">
             <summary>
-            Detetrmines whether the propery must be set as defined by the atribute.
+            Determines whether the propery must be set as defined by the atribute.
+            </summary>
+        </member>
+        <member name="P:Kodeo.Reegenerator.DynamicCode.RendererTypesLoader.RenderTypeInfo.Property.ValuesList">
+            <summary>
+            The list of acceptable enumeration values.
             </summary>
         </member>
         <member name="T:Kodeo.Reegenerator.Generators.RgenDependenciesSchemaFactory">

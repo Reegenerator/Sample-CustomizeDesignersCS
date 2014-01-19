@@ -69,9 +69,8 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kodeo.Reegenerator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=07b809f3a6579266, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Kodeo.Reegenerator.dll</HintPath>
+    <Reference Include="Kodeo.Reegenerator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=07b809f3a6579266, processorArchitecture=MSIL">
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -243,7 +242,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RgenXmlNamespaceRoot="urn:CustomizeDesignersCS:CustomizeDesigners" RgenProjectType="RenderersLibrary" />
+      <UserProperties RgenProjectType="RenderersLibrary" RgenXmlNamespaceRoot="urn:CustomizeDesignersCS:CustomizeDesigners" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
