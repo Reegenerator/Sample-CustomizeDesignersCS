@@ -87,10 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dataset\CustomersDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CustomersDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dataset\CustomersDataSetOriginal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -175,7 +171,6 @@ oldCustomTool:=CustomTool="SettingsSingleFileGenerator"</rgenRenderers>
       <Generator>RgenRenderer</Generator>
       <rgenRenderers>renderer:=projectPath="%24%28SolutionDir%29\CustomizeDesigners\CustomizeDesigners.csproj" class="CustomizeDesigners.Dataset.DataSetRenderer"
 oldCustomTool:=CustomTool="MSDataSetGenerator"</rgenRenderers>
-      <LastGenOutput>CustomersDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="Dataset\CustomersDataSet.xss">
       <DependentUpon>CustomersDataSet.xsd</DependentUpon>

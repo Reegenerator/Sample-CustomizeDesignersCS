@@ -3,17 +3,24 @@ namespace CustomizeDesigners.Dataset
     using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
-
+    using System.Xml.Linq;
+    using System.Xml.XPath;
+    using System.Linq;
     /// <summary>
     /// DataSetRenderer renderer class.
     /// </summary>
     public partial class DataSetRenderer
     {
+        public const string GeneratedCodeAttribute = "[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"System.Data.Design.TypedDataSetGenerator\", \"4.0.0.0\")]";
+        public const string NonUserAndGeneratedCodeAttribute =
+            "[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]\r\n" +
+            "        " + GeneratedCodeAttribute;
+
         /// <summary>
         /// The dataset object as loaded from the dataset file that triggered the code rendering process.
         /// </summary>
         private System.Data.DataSet _dataSet;
-
+        private XDocument _xDoc;
         /// <summary>
         /// Method that gets called prior to calling <see cref="Render"/>.
         /// Use this method to initialize the properties to be used by the render process.
@@ -24,6 +31,14 @@ namespace CustomizeDesigners.Dataset
             base.PreRender();
             this._dataSet = new System.Data.DataSet();
             this._dataSet.ReadXmlSchema(base.ProjectItem.FullPath);
+            _xDoc = XDocument.Parse(base.ProjectItem.FullPath);
+            var name = "";
+            var tableAdp = _xDoc.Root.XPathSelectElement("DataSource/Tables/TableAdapter[@Name=\""  + name + "\"]");
+            var colMapsX = tableAdp.XPathSelectElements("Mappings/Mapping");
+            var colMaps =from cm in  colMapsX
+                     select new { SourceColumn = cm.Attribute("SourceColumn"), DataSetColumn = cm.Attribute("DataSetColumn")};
+
+
         }
 
         /// <summary>
