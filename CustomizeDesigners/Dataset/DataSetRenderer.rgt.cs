@@ -1,19 +1,34 @@
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
+using System.Security.Cryptography;
+
+
 namespace CustomizeDesigners.Dataset
 {
     using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
-
+    using System.Xml.Linq;
+    using System.Xml.XPath;
+    using System.Linq;
+    using System.Data;
     /// <summary>
     /// DataSetRenderer renderer class.
     /// </summary>
     public partial class DataSetRenderer
     {
+        public const string GeneratedCodeAttribute = "[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"System.Data.Design.TypedDataSetGenerator\", \"4.0.0.0\")]";
+        public const string NonUserAndGeneratedCodeAttribute =
+            "[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]\r\n" +
+            "        " + GeneratedCodeAttribute;
+
         /// <summary>
         /// The dataset object as loaded from the dataset file that triggered the code rendering process.
         /// </summary>
         private System.Data.DataSet _dataSet;
-
+        private XDocument _xDoc;
         /// <summary>
         /// Method that gets called prior to calling <see cref="Render"/>.
         /// Use this method to initialize the properties to be used by the render process.
@@ -21,9 +36,91 @@ namespace CustomizeDesigners.Dataset
         /// </summary> 
         public override void PreRender()
         {
+
             base.PreRender();
+            Debugger.Launch();
+            var filePath = base.ProjectItem.FullPath;
             this._dataSet = new System.Data.DataSet();
-            this._dataSet.ReadXmlSchema(base.ProjectItem.FullPath);
+            this._dataSet.ReadXmlSchema(filePath);
+            _xDoc = XDocument.Parse(filePath);
+            var name = "";
+            var tableAdpX = _xDoc.Root.XPathSelectElement("DataSource/Tables/TableAdapter[@Name=\"" + name + "\"]");
+            var colMaps = from cm in tableAdpX.XPathSelectElements("Mappings/Mapping")
+                          select new { SourceColumn = cm.Attribute("SourceColumn"), DataSetColumn = cm.Attribute("DataSetColumn") };
+            
+            //System.Diagnostics.Debugger.Break()
+            var reader = System.IO.File.OpenRead(filePath);
+           var res= DatasetGeneratorWrapper.GenTableAdapters(reader);
+            Debug.Print("test");
+
+            //        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            //[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            //private void InitAdapter() {
+            //    this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            //    global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            //    tableMapping.SourceTable = "Table";
+            //    tableMapping.DataSetTable = "<%= userTable %>";
+            //    <% foreach (var cm in colMaps) { %>
+            //    tableMapping.ColumnMappings.Add("<%= cm.SourceColumn %>", "<%= cm.DataSetColumn %>");
+            //    <% } %> 
+            //    this._adapter.TableMappings.Add(tableMapping);
+            //    <% foreach (var cmd in commands) {
+
+            //    %>
+            //    this._adapter.<%= cmd.Name %> = new global::System.Data.SqlClient.SqlCommand();
+            //    this._adapter.<%= cmd.Name %>.Connection = this.Connection;
+            //    this._adapter.<%= cmd.Name %>.CommandText = "<%= cmd.Text %>";
+            //    this._adapter.<%= cmd.Name %>.CommandType = global::System.Data.CommandType.Text;
+            //    this._adapter.<%= cmd.Name %>.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            //    this._adapter.<%= cmd.Name %>.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimeStamp", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeStamp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            //    <% } %> 
+        }
+
+        class CommandInfo
+        {
+            public string Name { get; set; }
+            public string Text { get; set; }
+        }
+        private CommandInfo[] GenCommands(XElement tableAdpX)
+        {
+
+            var commands = from cmd in tableAdpX.XPathSelectElements("MainSource/DbSource/*")
+                           select new CommandInfo() { Name = cmd.Name.LocalName, Text = cmd.XPathSelectElement("DbCommand/CommandText").Value };
+
+            return null;
+
+            //select new { Name = cmd.Name, 
+            //             Command = cmd.XPathSelectElement("DbCommand/CommandText").Value,
+            //             Parameters = GenParameters(cmd)
+            //            };
+        }
+
+        private SqlParameter GenParameters(XElement cmdX)
+        {
+            //var pars = from par in cmdX.XPathSelectElements("DbCommand/CommandText")
+            //            select new SqlParameter( par.Attr("ParameterName") );
+            return null;
+        }
+
+        private SqlDbType GetSqlDbType(XElement parX)
+        {
+            SqlDbType res= SqlDbType.Int;
+            switch (parX.Attr("DbType"))
+            {
+                case "Int32":
+                    res = SqlDbType.Int;
+                    break;
+                case "Binary":
+                    switch (parX.Attr("ProviderType"))
+                    {
+                        case "TimeStamp":
+                            res = SqlDbType.Timestamp;
+                            break;
+
+                    };
+                    break;
+            }
+            return res;
         }
 
         /// <summary>
